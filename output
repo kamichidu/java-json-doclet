@@ -1,0 +1,197 @@
+
+C:\Users\USER1\Documents\sources\java\json-doclet>C:/users/user1/Documents/apps/java7/jdk7u55.x64/bin/javadoc.exe     -classpath C:/users/user1/Documents/apps/java7/jdk7u55.x64/lib/tools.jar;./target/json-doclet-0.0.0-jar-with-dependencies.jar     -docletpath ./target/json-doclet-0.0.0-jar-with-dependencies.jar     -doclet jp.michikusa.chitose.doclet.JsonDoclet     -encoding UTF-8     -sourcepath ./src/main/java/     -private     -subpackages jp.michikusa.chitose 
+パッケージjp.michikusa.chitose.docletのソース・ファイルを読み込んでいます...
+Javadoc情報を構築しています...
+{
+  "classes" : [ {
+    "name" : "jp.michikusa.chitose.doclet.JsonDoclet",
+    "comment_text" : "",
+    "constructors" : [ {
+      "name" : "JsonDoclet",
+      "comment_text" : "",
+      "parameters" : [ ],
+      "throws" : [ ]
+    } ],
+    "fields" : [ ],
+    "methods" : [ {
+      "name" : "start",
+      "comment_text" : "",
+      "return_type" : "boolean",
+      "parameters" : [ {
+        "name" : "root",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.RootDoc"
+      } ],
+      "throws" : [ ]
+    }, {
+      "name" : "write",
+      "comment_text" : "",
+      "return_type" : "void",
+      "parameters" : [ {
+        "name" : "g",
+        "comment_text" : "",
+        "type" : "com.fasterxml.jackson.core.JsonGenerator"
+      }, {
+        "name" : "doc",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.RootDoc"
+      } ],
+      "throws" : [ {
+        "name" : "java.io.IOException",
+        "comment_text" : ""
+      } ]
+    }, {
+      "name" : "writeClass",
+      "comment_text" : "",
+      "return_type" : "void",
+      "parameters" : [ {
+        "name" : "g",
+        "comment_text" : "",
+        "type" : "com.fasterxml.jackson.core.JsonGenerator"
+      }, {
+        "name" : "doc",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.ClassDoc"
+      } ],
+      "throws" : [ {
+        "name" : "java.io.IOException",
+        "comment_text" : ""
+      } ]
+    }, {
+      "name" : "writeConstructor",
+      "comment_text" : "",
+      "return_type" : "void",
+      "parameters" : [ {
+        "name" : "g",
+        "comment_text" : "",
+        "type" : "com.fasterxml.jackson.core.JsonGenerator"
+      }, {
+        "name" : "doc",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.ConstructorDoc"
+      } ],
+      "throws" : [ {
+        "name" : "java.io.IOException",
+        "comment_text" : ""
+      } ]
+    }, {
+      "name" : "writeThrow",
+      "comment_text" : "",
+      "return_type" : "void",
+      "parameters" : [ {
+        "name" : "g",
+        "comment_text" : "",
+        "type" : "com.fasterxml.jackson.core.JsonGenerator"
+      }, {
+        "name" : "type",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.Type"
+      }, {
+        "name" : "tags",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.ThrowsTag"
+      } ],
+      "throws" : [ {
+        "name" : "java.io.IOException",
+        "comment_text" : ""
+      } ]
+    }, {
+      "name" : "writeMethodParameter",
+      "comment_text" : "",
+      "return_type" : "void",
+      "parameters" : [ {
+        "name" : "g",
+        "comment_text" : "",
+        "type" : "com.fasterxml.jackson.core.JsonGenerator"
+      }, {
+        "name" : "parameter",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.Parameter"
+      }, {
+        "name" : "tags",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.ParamTag"
+      } ],
+      "throws" : [ {
+        "name" : "java.io.IOException",
+        "comment_text" : ""
+      } ]
+    }, {
+      "name" : "writeField",
+      "comment_text" : "",
+      "return_type" : "void",
+      "parameters" : [ {
+        "name" : "g",
+        "comment_text" : "",
+        "type" : "com.fasterxml.jackson.core.JsonGenerator"
+      }, {
+        "name" : "doc",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.FieldDoc"
+      } ],
+      "throws" : [ {
+        "name" : "java.io.IOException",
+        "comment_text" : ""
+      } ]
+    }, {
+      "name" : "writeMethod",
+      "comment_text" : "hogehoge",
+      "return_type" : "void",
+      "parameters" : [ {
+        "name" : "g",
+        "comment_text" : "",
+        "type" : "com.fasterxml.jackson.core.JsonGenerator"
+      }, {
+        "name" : "doc",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.MethodDoc"
+      } ],
+      "throws" : [ {
+        "name" : "java.io.IOException",
+        "comment_text" : "fuga"
+      } ]
+    }, {
+      "name" : "get",
+      "comment_text" : "",
+      "return_type" : "java.lang.Object",
+      "parameters" : [ {
+        "name" : "elements",
+        "comment_text" : "",
+        "type" : "java.lang.Object"
+      }, {
+        "name" : "i",
+        "comment_text" : "",
+        "type" : "int"
+      } ],
+      "throws" : [ ]
+    }, {
+      "name" : "find",
+      "comment_text" : "",
+      "return_type" : "com.sun.javadoc.ThrowsTag",
+      "parameters" : [ {
+        "name" : "tags",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.ThrowsTag"
+      }, {
+        "name" : "type",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.Type"
+      } ],
+      "throws" : [ ]
+    }, {
+      "name" : "find",
+      "comment_text" : "",
+      "return_type" : "com.sun.javadoc.ParamTag",
+      "parameters" : [ {
+        "name" : "tags",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.ParamTag"
+      }, {
+        "name" : "param",
+        "comment_text" : "",
+        "type" : "com.sun.javadoc.Parameter"
+      } ],
+      "throws" : [ ]
+    } ]
+  } ]
+}

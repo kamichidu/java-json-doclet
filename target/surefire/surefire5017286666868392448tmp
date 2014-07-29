@@ -1,0 +1,30 @@
+#surefire
+#Tue Jul 29 14:11:43 JST 2014
+testClassesDirectory=C\:\\Users\\USER1\\Documents\\sources\\java\\json-doclet\\target\\test-classes
+classPathUrl.4=C\:\\Users\\USER1\\Documents\\apps\\jdk6u20\\lib\\tools.jar
+classPathUrl.3=C\:\\Users\\USER1\\.m2\\repository\\org\\hamcrest\\hamcrest-core\\1.3\\hamcrest-core-1.3.jar
+classPathUrl.2=C\:\\Users\\USER1\\.m2\\repository\\junit\\junit\\4.11\\junit-4.11.jar
+useManifestOnlyJar=true
+classPathUrl.1=C\:\\Users\\USER1\\Documents\\sources\\java\\json-doclet\\target\\classes
+reportsDirectory=C\:\\Users\\USER1\\Documents\\sources\\java\\json-doclet\\target\\surefire-reports
+classPathUrl.0=C\:\\Users\\USER1\\Documents\\sources\\java\\json-doclet\\target\\test-classes
+dirscanner.0=directoryScannerOptions
+providerConfiguration=org.apache.maven.surefire.junit4.JUnit4Provider
+testSuiteDefinitionTestSourceDirectory=C\:\\Users\\USER1\\Documents\\sources\\java\\json-doclet\\src\\test\\java
+surefireClassPathUrl.1=C\:\\Users\\USER1\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-api\\2.7.1\\surefire-api-2.7.1.jar
+surefireClassPathUrl.0=C\:\\Users\\USER1\\.m2\\repository\\org\\apache\\maven\\surefire\\surefire-junit4\\2.7.1\\surefire-junit4-2.7.1.jar
+report.2=org.apache.maven.surefire.report.XMLReporter
+useSystemClassLoader=true
+report.1=org.apache.maven.surefire.report.BriefFileReporter
+report.0=org.apache.maven.surefire.report.ForkingConsoleReporter
+excludes0=**/*$*
+isTrimStackTrace=true
+dirscanner.0.params=C\:\\Users\\USER1\\Documents\\sources\\java\\json-doclet\\target\\test-classes|[**/Test*.java, **/*Test.java, **/*TestCase.java]|[**/*$*]
+includes2=**/*TestCase.java
+enableAssertions=true
+failIfNoTests=false
+includes1=**/*Test.java
+dirscanner.0.types=java.io.File|java.util.ArrayList|java.util.ArrayList
+includes0=**/Test*.java
+childDelegation=false
+classPathUrl.5=C\:\\Users\\USER1\\.m2\\repository\\com\\fasterxml\\jackson\\core\\jackson-core\\2.4.1.1\\jackson-core-2.4.1.1.jar
