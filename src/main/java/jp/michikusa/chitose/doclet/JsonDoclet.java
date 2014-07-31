@@ -1,5 +1,7 @@
 package jp.michikusa.chitose.doclet;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonFactory;
@@ -12,13 +14,34 @@ import com.sun.javadoc.MethodDoc;
 import com.sun.javadoc.ParamTag;
 import com.sun.javadoc.Parameter;
 import com.sun.javadoc.RootDoc;
+import com.sun.javadoc.SeeTag;
+import com.sun.javadoc.Tag;
 import com.sun.javadoc.ThrowsTag;
 import com.sun.javadoc.Type;
 
+/**
+ * Doclet implementation for javadoc command.
+ * This output is based on JavaScript Object Notation.
+ * @author E.Sekito
+ * @since 2014/07/31
+ */
 public class JsonDoclet {
+    public static final class Option {
+        public File outputFilename;
+
+        public boolean appendMode;
+
+        public boolean pretty;
+    }
+
     public static boolean start( RootDoc root) {
-        try (final JsonGenerator generator = new JsonFactory().createGenerator( System.out)) {
-            generator.setPrettyPrinter( new DefaultPrettyPrinter());
+        final Option option = parseOption( root.options());
+
+        try (final FileOutputStream ostream = new FileOutputStream( option.outputFilename, option.appendMode);
+                final JsonGenerator generator = new JsonFactory().createGenerator( ostream)) {
+            if ( option.pretty) {
+                generator.setPrettyPrinter( new DefaultPrettyPrinter());
+            }
 
             write( generator, root);
 
@@ -29,6 +52,42 @@ public class JsonDoclet {
         }
 
         return true;
+    }
+
+    public static int optionLength( String option) {
+        switch ( option) {
+            case "-ofile":
+                return 2;
+            case "-append":
+                return 1;
+            case "-pretty":
+                return 1;
+        }
+        return 0;
+    }
+
+    static Option parseOption( String[][] options) {
+        final Option opt = new Option();
+
+        for ( final String[] pair : options) {
+            switch ( pair[0]) {
+                case "-ofile":
+                    opt.outputFilename = new File( pair[1]);
+                    break;
+                case "-append":
+                    opt.appendMode = true;
+                    break;
+                case "-pretty":
+                    opt.pretty = true;
+                    break;
+            }
+        }
+
+        if ( opt.outputFilename == null) {
+            throw new IllegalArgumentException( "missing `-ofile' argument.");
+        }
+
+        return opt;
     }
 
     static void write( JsonGenerator g, RootDoc doc) throws IOException {
@@ -51,7 +110,31 @@ public class JsonDoclet {
         g.writeStartObject();
 
         g.writeObjectField( "name", doc.qualifiedName());
+        {
+            g.writeArrayFieldStart( "interfaces");
+
+            for ( final ClassDoc interfaceDoc : doc.interfaces()) {
+                g.writeString( interfaceDoc.qualifiedTypeName());
+            }
+
+            g.writeEndArray();
+        }
+        g.writeObjectField( "superclass", (doc.superclassType() != null) ? doc.superclassType().qualifiedTypeName() : "");
         g.writeObjectField( "comment_text", doc.commentText());
+        {
+            final Tag tag = get( doc.tags( "since"), 0);
+
+            g.writeObjectField( "since", (tag != null) ? tag.text() : "");
+        }
+        {
+            g.writeArrayFieldStart( "see");
+
+            for ( final SeeTag tag : doc.seeTags()) {
+                g.writeString( tag.referencedClassName());
+            }
+
+            g.writeEndArray();
+        }
         {
             g.writeArrayFieldStart( "constructors");
 
@@ -143,13 +226,6 @@ public class JsonDoclet {
         g.writeEndObject();
     }
 
-    /**
-     * hogehoge
-     * @param doc aaaaaaaa
-     * @param g bbbbbbbbbbbbb
-     * @throws IllegalArgumentException hoge
-     * @throws IOException fuga
-     */
     static void writeMethod( JsonGenerator g, MethodDoc doc) throws IOException {
         g.writeStartObject();
 
@@ -202,7 +278,7 @@ public class JsonDoclet {
 
     static ParamTag find( ParamTag[] tags, Parameter param) {
         for ( final ParamTag tag : tags) {
-            if (param.name().equals( tag.parameterName())) {
+            if ( param.name().equals( tag.parameterName())) {
                 return tag;
             }
         }
