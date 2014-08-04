@@ -5,8 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import lombok.Getter;
-
 public class DocletOption {
     public static int getOptionLength( String option) {
         switch ( option) {
@@ -44,10 +42,13 @@ public class DocletOption {
         return new FileOutputStream( this.outputFilename, this.appendMode);
     }
 
+    public boolean isPretty() {
+        return this.pretty;
+    }
+
     private File outputFilename;
 
     private boolean appendMode;
 
-    @Getter
     private boolean pretty;
 }
