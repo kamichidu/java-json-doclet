@@ -1,8 +1,7 @@
 package jp.michikusa.chitose.doclet;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -26,20 +25,11 @@ import com.sun.javadoc.Type;
  * @since 2014/07/31
  */
 public class JsonDoclet {
-    public static final class Option {
-        public File outputFilename;
-
-        public boolean appendMode;
-
-        public boolean pretty;
-    }
-
     public static boolean start( RootDoc root) {
-        final Option option = parseOption( root.options());
+        final DocletOption option = new DocletOption( root.options());
 
-        try (final FileOutputStream ostream = new FileOutputStream( option.outputFilename, option.appendMode);
-                final JsonGenerator generator = new JsonFactory().createGenerator( ostream)) {
-            if ( option.pretty) {
+        try (final OutputStream ostream = option.openOutputStream(); final JsonGenerator generator = new JsonFactory().createGenerator( ostream)) {
+            if ( option.isPretty()) {
                 generator.setPrettyPrinter( new DefaultPrettyPrinter());
             }
 
@@ -55,39 +45,7 @@ public class JsonDoclet {
     }
 
     public static int optionLength( String option) {
-        switch ( option) {
-            case "-ofile":
-                return 2;
-            case "-append":
-                return 1;
-            case "-pretty":
-                return 1;
-        }
-        return 0;
-    }
-
-    static Option parseOption( String[][] options) {
-        final Option opt = new Option();
-
-        for ( final String[] pair : options) {
-            switch ( pair[0]) {
-                case "-ofile":
-                    opt.outputFilename = new File( pair[1]);
-                    break;
-                case "-append":
-                    opt.appendMode = true;
-                    break;
-                case "-pretty":
-                    opt.pretty = true;
-                    break;
-            }
-        }
-
-        if ( opt.outputFilename == null) {
-            throw new IllegalArgumentException( "missing `-ofile' argument.");
-        }
-
-        return opt;
+        return DocletOption.getOptionLength( option);
     }
 
     static void write( JsonGenerator g, RootDoc doc) throws IOException {
