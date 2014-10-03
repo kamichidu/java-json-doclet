@@ -5,44 +5,60 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class DocletOption {
-    public static int getOptionLength( String option) {
-        switch ( option) {
-            case "-ofile":
-                return 2;
-            case "-append":
-                return 1;
-            case "-pretty":
-                return 1;
+public class DocletOption
+{
+    public static int getOptionLength(String option)
+    {
+        if("-ofile".equals(option))
+        {
+            return 2;
         }
-        return 0;
+        else if("-append".equals(option))
+        {
+            return 1;
+        }
+        else if("-pretty".equals(option))
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
-    public DocletOption( String[][] options) {
-        for ( final String[] pair : options) {
-            switch ( pair[0]) {
-                case "-ofile":
-                    this.outputFilename = new File( pair[1]);
-                    break;
-                case "-append":
-                    this.appendMode = true;
-                    break;
-                case "-pretty":
-                    this.pretty = true;
-                    break;
+    public DocletOption(String[][] options)
+    {
+        for(final String[] pair : options)
+        {
+            if("-ofile".equals(pair[0]))
+            {
+                this.outputFilename = new File( pair[1]);
+            }
+            else if("-append".equals(pair[0]))
+            {
+                this.appendMode = true;
+            }
+            else if("-pretty".equals(pair[0]))
+            {
+                this.pretty = true;
             }
         }
 
-        if ( this.outputFilename == null) {
-            throw new IllegalArgumentException( "missing `-ofile' argument.");
+        if(this.outputFilename == null)
+        {
+            throw new IllegalArgumentException("missing `-ofile' argument.");
         }
     }
 
-    public OutputStream openOutputStream() throws IOException {
-        return new FileOutputStream( this.outputFilename, this.appendMode);
+    public OutputStream openOutputStream()
+        throws IOException
+    {
+        return new FileOutputStream(this.outputFilename, this.appendMode);
     }
 
-    public boolean isPretty() {
+    public boolean isPretty()
+    {
         return this.pretty;
     }
 

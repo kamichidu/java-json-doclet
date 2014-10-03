@@ -4,7 +4,7 @@ This is the doclet implementation for javadoc command.
 
 Requires:
 
-1. Java Development Toolkit 1.7 or higher
+1. Java Development Toolkit 1.6 or higher
 1. Apache Maven
 
 How to Use
