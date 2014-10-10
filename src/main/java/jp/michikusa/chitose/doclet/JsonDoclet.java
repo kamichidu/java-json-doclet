@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.ConstructorDoc;
 import com.sun.javadoc.FieldDoc;
+import com.sun.javadoc.LanguageVersion;
 import com.sun.javadoc.MethodDoc;
 import com.sun.javadoc.ParamTag;
 import com.sun.javadoc.Parameter;
@@ -26,6 +27,11 @@ import com.sun.javadoc.Type;
  */
 public class JsonDoclet
 {
+    public static LanguageVersion languageVersion()
+    {
+        return LanguageVersion.JAVA_1_5;
+    }
+
     public static boolean start(RootDoc root)
     {
         final DocletOption option= new DocletOption(root.options());
